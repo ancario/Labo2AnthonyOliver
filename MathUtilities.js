@@ -1,5 +1,5 @@
 export function Addition(x, y) {
-    return x + y;
+    return parseFloat(x) + parseFloat(y);
 }
 
 export function Soustraction(x, y) {
@@ -51,4 +51,74 @@ export function NPremier(n) {
     }
     return num - 1;
 }
-``
+// Classe MathFunctions
+export class MathFunctions {
+    static VerifierOperateur(operateur) {
+        const operateursValides = ['+', ' ', '-', '*', '/', '%', '!', 'p', 'np'];
+        return operateursValides.includes(operateur);
+    }
+
+    static calculate(op, x, y) {
+        if (op === null || !this.VerifierOperateur(op)) {
+            return this.createErrorResult(op, x, y, "Opérateur non valide ou manquant");
+        }
+
+        if (this.areParametersInvalid(op, x, y)) {
+            return this.createErrorResult(op, x, y, "Paramètres non valides. x et y doivent être des nombres.");
+        }
+
+        switch (op) {
+            case ' ':
+                return this.createSuccessResult(op, x, y, Addition(x, y));
+            case '-':
+                return this.createSuccessResult(op, x, y, Soustraction(x, y));
+            case '*':
+                return this.createSuccessResult(op, x, y, Multiplication(x, y));
+            case '/':
+                return this.handleDivision(op, x, y);
+            case '%':
+                return this.createSuccessResult(op, x, y, Modulo(x, y));
+            case '!':
+                return this.createSuccessResult(op, x, null, Factorielle(parseInt(x)));
+            case 'p':
+                return this.createSuccessResult(op, x, null, EstPremier(parseInt(x)));
+            case 'np':
+                return this.createSuccessResult(op, x, null, NPremier(parseInt(x)));
+            default:
+                return this.createErrorResult(op, x, y, "Opérateur non valide");
+        }
+    }
+
+    static handleDivision(op, x, y) {
+        if (y === 0) {
+            return this.createErrorResult(op, x, y, "Division par zéro n'est pas permise");
+        }
+        return this.createSuccessResult(op, x, y, Division(x, y));
+    }
+
+    static areParametersInvalid(op, x, y) {
+        return  isNaN(x) ||isNaN(y);
+    }
+
+    static createSuccessResult(op, x, y, result) {
+        return {
+            op: op,
+            x: x,
+            y: y,
+            result: result,
+            error: null
+        };
+    }
+
+    static createErrorResult(op, x, y, error) {
+        return {
+            op: op,
+            x: x,
+            y: y,
+            result: null,
+            error: error
+        };
+    }
+}
+
+    
