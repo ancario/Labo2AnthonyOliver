@@ -55,5 +55,5 @@ export default class Controller {
                 this.HttpContext.response.notFound("Ressource not found.");
         } else
             this.HttpContext.response.badRequest("The Id in the request url is rather not specified or syntactically wrong.");
-    }
+    }       
 }
