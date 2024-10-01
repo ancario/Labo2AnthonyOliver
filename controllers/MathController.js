@@ -13,22 +13,12 @@ export default class MathController extends Controller {
 
   }
   post() {
-
-
-
-
-
+    HttpContext.response.notImplemented();
   }
   put() {
-
-
-
-
+    HttpContext.response.notImplemented();
   }
   remove() {
-
-
-
-    
+    HttpContext.response.notImplemented();  
   }
 }
