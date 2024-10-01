@@ -28,6 +28,7 @@ export default class Controller {
                 this.HttpContext.response.badRequest(this.repository.model.state.errors);
         }
     }
+    
     put(data) {
         if (!isNaN(this.HttpContext.path.id)) {
             this.repository.update(this.HttpContext.path.id, data);
