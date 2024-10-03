@@ -7,3 +7,4 @@ export default class BookmarksController extends Controller {
         super(HttpContext, new Repository(new BookmarkModel()));
     }
 }
+/////////
