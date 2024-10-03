@@ -14,7 +14,13 @@ export default class MathsController extends Controller {
     if (['!', 'p', 'np'].includes(op)) {
       // Vérifie si 'n' est manquant ou n'est pas un nombre
       if (n === undefined || isNaN(n)) {
+        if(n === undefined ){
+          Result = MathFunctions.createErrorResult(op, null, null, n, "Parameter 'n' is missing",true);
+        }
+        else{
           Result = MathFunctions.createErrorResult(op, null, null, n, "Parameter 'n' is not a number");
+        }
+          
       }
       // Vérifie si 'n' est un entier > 0
       else if (parseInt(n) <= 0 || !Number.isInteger(parseFloat(n))) {

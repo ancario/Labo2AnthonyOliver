@@ -116,13 +116,18 @@ export class MathFunctions {
 
     // Ajout de la gestion de 'n' dans les résultats de succès
     static createSuccessResult(op, x, y, result, n = null) {
+          // Si 'bool' est true, on renvoie une erreur associée à 'n'
+  
         return n !== null
             ? { op: op, n: n, result: result }
             : { op: op, x: x, y: y, result: result};
     }
 
     // Ajout de la gestion de 'n' dans les résultats d'erreur
-    static createErrorResult(op, x, y, n = null, error) {
+    static createErrorResult(op, x, y, n = null, error,bool =false) {
+        if (bool ) {
+            return { op: op, n: n,error: "Parrameter n is missing" };
+        }
         return n !== null
             ? { op: op, n: n, error: error }
             : { op: op, x: x, y: y,  error: error };
