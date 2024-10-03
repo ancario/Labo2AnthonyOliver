@@ -1,4 +1,4 @@
-const showResult = (url) => {
+function showResult(url){
     const path = decomposePath(url);
     const { op, x, y, n } = path.params;
     let Result;
@@ -34,48 +34,29 @@ const showResult = (url) => {
     return Result;
 };
 
-const decomposePath = (url) => {
-    let isAPI = false;
-    let model = undefined;
-    let controllerName = undefined;
-    let action = undefined;
-    let id = undefined;
+
+function parseQueryString(url) {
+    const queryString = url.split('?')[1];
+    const params = {};
+
+    if (queryString) {
+        const pairs = queryString.split('&');
+        for (const pair of pairs) {
+            const [key, value] = pair.split('=');
+            params[decodeURIComponent(key)] = value ? decodeURIComponent(value) : null;
+        }
+    }
+
+    return params;
+}
+
+function decomposePath(queryString){
     let params = null;
 
-    let queryString = getQueryString(url);
     if (queryString !== undefined) {
-        params = queryStringParser.parse(queryString);
+        params = parseQueryString(queryString);
     }
+    
 
-    let path = removeQueryString(url).toLowerCase();
-
-    if (path.indexOf('/api') > -1) {
-        isAPI = true;
-        path = path.replace('/api', '');
-    }
-
-    let urlParts = path.split("/");
-
-    if (urlParts[1] !== undefined) {
-        model = urlParts[1];
-        controllerName = capitalizeFirstLetter(model) + 'Controller';
-    }
-
-    if (!isAPI) {
-        if (urlParts[2] !== undefined && urlParts[2] !== '') {
-            action = urlParts[2];
-        } else {
-            action = 'index';
-        }
-
-        if (urlParts[3] !== undefined) {
-            id = parseInt(urlParts[3]);
-        }
-    } else {
-        if (urlParts[2] !== undefined) {
-            id = parseInt(urlParts[2]);
-        }
-    }
-
-    return { isAPI, model, controllerName, action, id, queryString, params };
+    return { params };
 };
