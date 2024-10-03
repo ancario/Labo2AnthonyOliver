@@ -54,21 +54,26 @@ export function NPremier(n) {
 // Classe MathFunctions
 export class MathFunctions {
     static VerifierOperateur(operateur) {
-        const operateursValides = ['+', ' ', '-', '*', '/', '%', '!', 'p', 'np'];
+       
+        const operateursValides = ['+',' ', '-', '*', '/', '%', '!', 'p', 'np'];
         return operateursValides.includes(operateur);
     }
 
     static calculate(op, x, y) {
+        
+        if (op === ' ') {
+            op = '+';
+        }
         if (op === null || !this.VerifierOperateur(op)) {
-            return this.createErrorResult(op, x, y, "Opérateur non valide ou manquant");
+            return this.createErrorResult(op, x, y, null, "Opérateur non valide ou manquant");
         }
 
         if (this.areParametersInvalid(op, x, y)) {
-            return this.createErrorResult(op, x, y, "Paramètres non valides. x et y doivent être des nombres.");
+            return this.createErrorResult(op, x, y, null, "Paramètres non valides. x et y doivent être des nombres.");
         }
 
         switch (op) {
-            case ' ':
+            case '+':
                 return this.createSuccessResult(op, x, y, Addition(x, y));
             case '-':
                 return this.createSuccessResult(op, x, y, Soustraction(x, y));
@@ -79,46 +84,47 @@ export class MathFunctions {
             case '%':
                 return this.createSuccessResult(op, x, y, Modulo(x, y));
             case '!':
-                return this.createSuccessResult(op, x, null, Factorielle(parseInt(x)));
+                return this.createSuccessResult(op, null, null, Factorielle(parseInt(x)), parseInt(x));
             case 'p':
-                return this.createSuccessResult(op, x, null, EstPremier(parseInt(x)));
+                return this.createSuccessResult(op, null, null, EstPremier(parseInt(x)), parseInt(x));
             case 'np':
-                return this.createSuccessResult(op, x, null, NPremier(parseInt(x)));
+                return this.createSuccessResult(op, null, null, NPremier(parseInt(x)), parseInt(x));
             default:
-                return this.createErrorResult(op, x, y, "Opérateur non valide");
+                return this.createErrorResult(op, x, y, null, "Opérateur non valide");
         }
     }
 
     static handleDivision(op, x, y) {
+        // Cas de la division par zéro
         if (y === 0) {
-            return this.createErrorResult(op, x, y, "Division par zéro n'est pas permise");
+            if (x === 0) {
+                // 0 / 0 => NaN
+                return this.createSuccessResult(op, x, y,"NaN");
+            }
+            // Division par zéro : renvoie Infinity ou -Infinity en fonction du signe de x
+            return this.createSuccessResult(op, x, y, x > 0 ? "Infinity" : "-Infinity");
         }
-        return this.createSuccessResult(op, x, y, Division(x, y));
+    
+        // Cas normal de division
+        const result = Division(x, y);
+        return this.createSuccessResult(op, x, y, result);
     }
 
     static areParametersInvalid(op, x, y) {
-        return  isNaN(x) ||isNaN(y);
+        return isNaN(x) || isNaN(y);
     }
 
-    static createSuccessResult(op, x, y, result) {
-        return {
-            op: op,
-            x: x,
-            y: y,
-            result: result,
-            error: null
-        };
+    // Ajout de la gestion de 'n' dans les résultats de succès
+    static createSuccessResult(op, x, y, result, n = null) {
+        return n !== null
+            ? { op: op, n: n, result: result }
+            : { op: op, x: x, y: y, result: result};
     }
 
-    static createErrorResult(op, x, y, error) {
-        return {
-            op: op,
-            x: x,
-            y: y,
-            result: null,
-            error: error
-        };
+    // Ajout de la gestion de 'n' dans les résultats d'erreur
+    static createErrorResult(op, x, y, n = null, error) {
+        return n !== null
+            ? { op: op, n: n, error: error }
+            : { op: op, x: x, y: y,  error: error };
     }
 }
-
-    
