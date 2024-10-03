@@ -7,57 +7,55 @@ export default class MathsController extends Controller {
 
   get() {
     const { op, x, y, n } = this.HttpContext.path.params;
-
+  
+    // Si l'un des paramètres requis est manquant, affiche la liste des requêtes possibles
+    if (!op || (!x && !y && !n)) {
+      this.HttpContext.response.HTML(generateQueryStringList());
+      return;
+    }
+  
     let Result;
-
-    
+  
     if (['!', 'p', 'np'].includes(op)) {
       // Vérifie si 'n' est manquant ou n'est pas un nombre
       if (n === undefined || isNaN(n)) {
-        if(n === undefined ){
-          Result = MathFunctions.createErrorResult(op, null, null, n, "Parameter 'n' is missing",true);
-        }
-        else{
+        if (n === undefined) {
+          Result = MathFunctions.createErrorResult(op, null, null, n, "Parameter 'n' is missing", true);
+        } else {
           Result = MathFunctions.createErrorResult(op, null, null, n, "Parameter 'n' is not a number");
         }
-          
       }
       // Vérifie si 'n' est un entier > 0
       else if (parseInt(n) <= 0 || !Number.isInteger(parseFloat(n))) {
-          Result = MathFunctions.createErrorResult(op, null, null, n, "Parameter 'n' must be an integer > 0");
-      } 
-      else {
-          Result = MathFunctions.calculate(op, parseInt(n), null);
+        Result = MathFunctions.createErrorResult(op, null, null, n, "Parameter 'n' must be an integer > 0");
+      } else {
+        Result = MathFunctions.calculate(op, parseInt(n), null);
       }
-  }
-    
-  else if (op && x && y) {
-    // Vérifie si x ou y ne sont pas des nombres
-    if (isNaN(x)) {
+    } else if (op && x && y) {
+      // Vérifie si x ou y ne sont pas des nombres
+      if (isNaN(x)) {
         Result = MathFunctions.createErrorResult(op, x, y, null, "X is not a number");
-    } else if (isNaN(y)) {
+      } else if (isNaN(y)) {
         Result = MathFunctions.createErrorResult(op, x, y, null, "Y is not a number");
-    } else {
+      } else {
         // Si x et y sont des nombres valides, on procède avec le calcul
         Result = MathFunctions.calculate(op, parseFloat(x), parseFloat(y));
+      }
+    } else if (!x) {
+      // Si x est manquant, retourne une erreur spécifique
+      Result = MathFunctions.createErrorResult(op, null, y, null, "X is missing");
+    } else if (!y) {
+      // Si y est manquant, retourne une erreur spécifique
+      Result = MathFunctions.createErrorResult(op, x, null, null, "Y is missing");
+    } else {
+      // Si les paramètres 'x' ou 'y' sont invalides
+      Result = MathFunctions.createErrorResult(op, x, y, null, "Paramètres 'x' ou 'y' manquants ou non valides");
     }
-} 
-else if (!x) {
-    // Si x est manquant, retourne une erreur spécifique
-    Result = MathFunctions.createErrorResult(op, null, y, null, "X is missing");
-}
-else if (!y) {
-    // Si y est manquant, retourne une erreur spécifique
-    Result = MathFunctions.createErrorResult(op, x, null, null, "Y is missing");
-} 
-else {
-    // Si les paramètres 'x' ou 'y' sont invalides
-    Result = MathFunctions.createErrorResult(op, x, y, null, "Paramètres 'x' ou 'y' manquants ou non valides");
-}
-
+  
     // Retourner le résultat sous forme JSON
     this.HttpContext.response.JSON(Result);
-}
+  }
+
   post() {
     HttpContext.response.notImplemented();
   }
@@ -67,4 +65,35 @@ else {
   remove() {
     HttpContext.response.notImplemented();  
   }
+  
+}
+function generateQueryStringList() {
+  return `
+    <h3>List of possible query strings:</h3>
+    <pre>
+      ? op = + & x = number & y = number
+      return {"op":"+","x":number,"y":number,"value": x + y}
+
+      ? op = - & x = number & y = number
+      return {"op":"-","x":number,"y":number,"value": x - y}
+
+      ? op = * & x = number & y = number
+      return {"op":"*","x":number,"y":number,"value": x * y}
+
+      ? op = / & x = number & y = number
+      return {"op":"/","x":number,"y":number,"value": x / y}
+
+      ? op = % & x = number & y = number
+      return {"op":"%","x":number,"y":number,"value": x % y}
+
+      ? op = ! & n = integer
+      return {"op":"!","n":integer,"value": n!}
+
+      ? op = p & n = integer
+      return {"op":"p","n":integer,"value": true if n is a prime number}
+
+      ? op = np & n = integer
+      return {"op":"np","n":integer,"value": nth prime number}
+    </pre>
+  `;
 }
