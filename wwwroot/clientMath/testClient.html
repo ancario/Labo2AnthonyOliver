@@ -1,21 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Test du service /api/maths</title>
 </head>
-<h2>Test du service /api/maths</h2>
-<fieldset>
-    <legend>Url du service</legend>
-    <input type="text" id="url" name="url" value="http://localhost:5000/api/Maths?">
-    <p>/api/maths</p>
-    <button>Demarrer le test</button>
-    <button>aide</button>
-</fieldset>
-<br>
-<fieldset>
-    <legend>Test</legend> 
-    <div>
-        
-    </div>
-</fieldset>
+<body>
+    <h2>Test du service /api/maths</h2>
+    <fieldset>
+        <legend>Url du service</legend>
+        <input type="text" id="url" name="url" value="http://localhost:5000/api/Maths?">
+        <p>/api/maths</p>
+        <button onclick="testService()">Démarrer le test</button>
+        <button onclick="showHelp()">Aide</button>
+    </fieldset>
+    <br>
+    <fieldset>
+        <legend>Test</legend> 
+        <div id="result"></div>
+    </fieldset>
+    <script src="./script.js"></script>
+    <script src="./showResult.js"></script>
+    <script>
+        async function testService() {
+            let url = document.getElementById("url").value;
+            try {
+                // Assuming TestMaths is a function you defined elsewhere
+                await TestMaths(url, "op=+&x=50&y=25", showResult);
+            } catch (error) {
+                console.error("Erreur lors du test:", error);
+                document.getElementById("result").innerText = "Erreur lors du test: " + error.message;
+            }
+        }
+        function showHelp() {
+            alert("Ceci est une aide pour démarrer le test.");
+        }
+    </script>
+</body>
 </html>
-

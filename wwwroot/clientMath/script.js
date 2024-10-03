@@ -1,7 +1,8 @@
-
+import { showResult } from "./showResult"
 
 async function TestMaths(url,param,showresult){
     val=showresult(url+param)
+    console.log(val)
     fetch(url+param)
         .then((response)=>{
             check=""
@@ -21,7 +22,7 @@ async function TestMaths(url,param,showresult){
                     check="ERROR"
                 }
             }
-            return 
+            return <p>{check}+{response}</p>
         })
     
 }
