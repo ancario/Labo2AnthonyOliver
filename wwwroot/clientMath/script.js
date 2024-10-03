@@ -17,7 +17,7 @@ async function TestMaths(url, param, showresult) {
                  else {
                 check = "ERROR";}
         }
-        return `${check} ---> ${JSON.stringify(data)}`;
+        return `${check} ---> ${JSON.stringify(data)}\n`;
         
     } catch (error) {
         console.error('Erreur lors de la récupération des données:', error);

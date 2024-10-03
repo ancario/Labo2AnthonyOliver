@@ -28,18 +28,43 @@
             let url = document.getElementById("url").value;
             try {
                 // Assuming TestMaths is a function you defined elsewhere
-                document.getElementById("result").innerText =await TestMaths(url, "op=+&x=50&y=25", showResult);
-                document.getElementById("result").innerText =await TestMaths(url, "op=+&x=50&y=25", showResult);
-                document.getElementById("result").innerText =await TestMaths(url, "op=+&x=50&y=25", showResult);
-                document.getElementById("result").innerText =await TestMaths(url, "op=+&x=50&y=25", showResult);
-                document.getElementById("result").innerText =await TestMaths(url, "op=+&x=50&y=25", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=50&y=25", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=50&y=25", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=50&y=25", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=50&y=25", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=50&y=25", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=50&y=25", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=50&y=25", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=50&y=25", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=50&y=25", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=50&y=25", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=50&y=25", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=50&y=25", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=50&y=25", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=50&y=25", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=50&y=25", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=50&y=25", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=50&y=25", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=50&y=25", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=50&y=25", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=50&y=25", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=50&y=25", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=50&y=25", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=50&y=25", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=50&y=25", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=50&y=25", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=50&y=25", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=50&y=25", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=50&y=25", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=50&y=25", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=50&y=25", showResult);
                 } catch (error) {
                 console.error("Erreur lors du test:", error);
                 document.getElementById("result").innerText = "Erreur lors du test: " + error.message;
             }
         }
         function showHelp() {
-            alert("Ceci est une aide pour démarrer le test.");
+            window.location.replace("http://localhost:5000/api/Maths?");  
         }
     </script>
 </body>
