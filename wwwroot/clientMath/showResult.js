@@ -1,5 +1,4 @@
-import {MathFunctions }from "./math.js";
-export const showResult = (url) => {
+const showResult = (url) => {
     const path = decomposePath(url);
     const { op, x, y, n } = path.params;
     let Result;
@@ -35,7 +34,7 @@ export const showResult = (url) => {
     return Result;
 };
 
-export const decomposePath = (url) => {
+const decomposePath = (url) => {
     let isAPI = false;
     let model = undefined;
     let controllerName = undefined;

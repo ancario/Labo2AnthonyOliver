@@ -1,4 +1,3 @@
-import { showResult } from "./showResult"
 
 async function TestMaths(url,param,showresult){
     val=showresult(url+param)
@@ -22,7 +21,7 @@ async function TestMaths(url,param,showresult){
                     check="ERROR"
                 }
             }
-            return <p>{check}+{response}</p>
+            return `<p>${check}+${response}</p>`
         })
     
 }
