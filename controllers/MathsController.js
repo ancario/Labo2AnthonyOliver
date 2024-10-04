@@ -69,8 +69,9 @@ export default class MathsController extends Controller {
 }
 function generateQueryStringList() {
   return `
+    <h3>GET : Maths endpoint</h3>
     <h3>List of possible query strings:</h3>
-    <pre>
+    <pre style="font-size: 18px;"><strong>
       ? op = + & x = number & y = number
       return {"op":"+","x":number,"y":number,"value": x + y}
 
@@ -94,6 +95,6 @@ function generateQueryStringList() {
 
       ? op = np & n = integer
       return {"op":"np","n":integer,"value": nth prime number}
-    </pre>
+    </strong></pre>
   `;
 }
