@@ -31,7 +31,7 @@
         async function testService() {
             let url = document.getElementById("url").value;
             try {
-                // Assuming TestMaths is a function you defined elsewhere
+                
                 document.getElementById("result").innerText =await TestMaths(url, "op=+&x=-111&y=-244", showResult);
                 document.getElementById("result").innerText +=await TestMaths(url, "op=-&x=1&y=abc", showResult);
                 document.getElementById("result").innerText +=await TestMaths(url, "n=a&op=p&x=50&y=25", showResult);
