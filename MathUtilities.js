@@ -135,4 +135,16 @@ export class MathFunctions {
             ? { op: op, n: n, error: error }
             : { op: op, x: x, y: y,  error: error };
     }
+    static createErrorAllResult(params) {
+        let errorMessages = {};
+        
+        // Parcourir chaque paramètre de la liste
+        params.forEach(param => {
+            // Ajouter un message d'erreur pour chaque paramètre
+            errorMessages[param.name] = `Parameter '${param.name}' is ${param.error}`;
+        });
+        
+        // Retourner l'objet sous forme JSON
+        return JSON.stringify(errorMessages);
+    }
 }
