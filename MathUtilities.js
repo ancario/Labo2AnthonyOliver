@@ -136,6 +136,9 @@ export class MathFunctions {
 
     
     static createErrorResult(op, x, y, n = null, error,bool =false) {
+        if (op === ' ') {
+            op = '+';
+        }
         if (bool ) {
             return { op: op, n: n,error: "Parrameter n is missing" };
         }

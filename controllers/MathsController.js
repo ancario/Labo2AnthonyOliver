@@ -8,6 +8,7 @@ export default class MathsController extends Controller {
   get() {
     let Result;
     const { op, x, y, n } = this.HttpContext.path.params;
+    
     // Obtenir la liste des paramètres fournis dans l'objet `params`
     const allowedParams = ["op", "x", "y", "n","X","Y"]; // Les seuls paramètres autorisés
     const providedParams = Object.keys(this.HttpContext.path.params); // Les paramètres effectivement présents
