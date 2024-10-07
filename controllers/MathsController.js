@@ -6,15 +6,21 @@ export default class MathsController extends Controller {
   }
 
   get() {
+    let Result;
     const { op, x, y, n } = this.HttpContext.path.params;
-  
+    // Vérification des conditions pour 'x' et 'y'
+    if ((x !== null && (x || y)) || (x === null && (!x || !y))) {
+      Result = MathFunctions.createErrorResult(op, x, y, n, "to many parameter");
+      this.HttpContext.response.JSON(Result)
+      return;
+    }
     // Si l'un des paramètres requis est manquant, affiche la liste des requêtes possibles
     if (!op || (!x && !y && !n)) {
       this.HttpContext.response.HTML(generateQueryStringList());
       return;
     }
   
-    let Result;
+
   
     if (['!', 'p', 'np'].includes(op)) {
       // Vérifie si 'n' est manquant ou n'est pas un nombre
