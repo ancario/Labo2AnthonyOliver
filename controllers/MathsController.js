@@ -132,6 +132,14 @@ export default class MathsController extends Controller {
 }
 function generateQueryStringList() {
   return `
+  <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aide</title>
+</head>
+<body>
     <h3>GET : Maths endpoint</h3>
     <h3>List of possible query strings:</h3>
     <pre style="font-size: 18px;"><strong>
@@ -159,5 +167,7 @@ function generateQueryStringList() {
       ? op = np & n = integer
       return {"op":"np","n":integer,"value": nth prime number}
     </strong></pre>
+    </body>
+</html>
   `;
 }
