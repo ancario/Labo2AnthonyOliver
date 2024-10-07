@@ -3,7 +3,7 @@ function showResult(url){
     let Result;
     const { op, x, y, n } = path.params;
    
-    const allowedParams = ["op", "x", "y", "n"]; 
+    const allowedParams = ["op", "x", "y", "n","X","Y"]; 
     const providedParams = Object.keys(path.params); 
 
    
