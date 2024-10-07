@@ -1,7 +1,29 @@
 function showResult(url){
     const path = decomposePath(url);
-    const { op, x, y, n } = path.params;
     let Result;
+    const { op, x, y, n } = this.HttpContext.path.params;
+    // Obtenir la liste des paramètres fournis dans l'objet `params`
+    const allowedParams = ["op", "x", "y", "n"]; // Les seuls paramètres autorisés
+    const providedParams = Object.keys(this.HttpContext.path.params); // Les paramètres effectivement présents
+
+    // Vérifier si des paramètres non autorisés sont présents
+    const extraParams = providedParams.filter(
+      (param) => !allowedParams.includes(param)
+    );
+
+    if (extraParams.length > 0) {
+      // S'il y a des paramètres non autorisés, créer l'erreur avec `createErrorAllResult`
+      const Result = MathFunctions.createErrorAllResult(this.HttpContext.path.params);
+      this.HttpContext.response.JSON(Result);
+      return;
+    }
+    // Si l'un des paramètres requis est manquant, affiche la liste des requêtes possibles
+    if (Object.keys(this.HttpContext.path.params).length === 0) {
+      // Si aucun paramètre n'est présent, retourner la liste des query strings
+      this.HttpContext.response.HTML(generateQueryStringList());
+      return;
+    }
+
 
     if (['!', 'p', 'np'].includes(op)) {
         if (n === undefined || isNaN(n)) {
