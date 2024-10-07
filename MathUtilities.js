@@ -138,11 +138,11 @@ export class MathFunctions {
     static createErrorAllResult(params) {
         let errorMessages = {};
         
-        // Parcourir chaque paramètre de la liste
-        params.forEach(param => {
-            // Ajouter un message d'erreur pour chaque paramètre avec son nom
-            errorMessages[param.name] = param.value;
-        });
+       // Parcourir chaque clé et valeur de l'objet
+    Object.entries(params).forEach(([key, value]) => {
+        // Ajouter un message d'erreur pour chaque clé
+        errorMessages[key] = value;
+    });
         
         // Ajouter le message d'erreur général
         errorMessages["error"] = "Too many parameters";
