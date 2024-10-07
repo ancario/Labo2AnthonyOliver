@@ -10,7 +10,7 @@ export default class MathsController extends Controller {
     const { op, x, y, n } = this.HttpContext.path.params;
     // Vérification des conditions pour 'x' et 'y'
     if ((x !== null && (x || y)) || (x === null && (!x || !y))) {
-      Result = MathFunctions.createErrorResult(op, x, y, n, "to many parameter");
+      Result = MathFunctions.createErrorAllResult(params);
       this.HttpContext.response.JSON(Result)
       return;
     }

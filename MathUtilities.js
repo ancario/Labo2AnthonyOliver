@@ -140,11 +140,14 @@ export class MathFunctions {
         
         // Parcourir chaque paramètre de la liste
         params.forEach(param => {
-            // Ajouter un message d'erreur pour chaque paramètre
-            errorMessages[param.name] = `Parameter '${param.name}' is ${param.error}`;
+            // Ajouter un message d'erreur pour chaque paramètre avec son nom
+            errorMessages[param.name] = param.value;
         });
         
-        // Retourner l'objet sous forme JSON
-        return JSON.stringify(errorMessages);
+        // Ajouter le message d'erreur général
+        errorMessages["error"] = "Too many parameters";
+        
+        
+        return errorMessages;
     }
 }
