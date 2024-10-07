@@ -18,7 +18,9 @@ export function Division(x, y) {
 }
 
 export function Modulo(x, y) {
-    print("modulo")
+    if (y === 0) {
+        throw new Error("Division par zéro n'est pas permise");
+    }
     return x % y;
 }
 
