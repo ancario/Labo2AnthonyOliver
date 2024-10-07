@@ -82,8 +82,7 @@ class MathFunctions {
             case '/':
                 return this.handleDivision(op, x, y);
             case '%':
-                console.log("modulo")
-                return this.createSuccessResult(op, x, y, Modulo(x, y));
+                return this.handleModulo(op,x,y);
             case '!':
                 return this.createSuccessResult(op, null, null, Factorielle(parseInt(x)), parseInt(x));
             case 'p':
@@ -110,7 +109,15 @@ class MathFunctions {
         const result = Division(x, y);
         return this.createSuccessResult(op, x, y, result);
     }
+    static handleModulo(op, x, y) {
 
+        if (y === 0) {
+            return this.createSuccessResult(op, x, y,"NaN");
+        }
+        const result = Modulo(x, y);
+
+        return this.createSuccessResult(op, x, y, result);
+}
     static areParametersInvalid(op, x, y) {
         return isNaN(x) || isNaN(y);
     }
@@ -132,5 +139,20 @@ class MathFunctions {
         return n !== null
             ? { op: op, n: n, error: error }
             : { op: op, x: x, y: y, error: error };
+    }
+    static createErrorAllResult(params) {
+        let errorMessages = {};
+        
+       
+    Object.entries(params).forEach(([key, value]) => {
+       
+        errorMessages[key] = value;
+    });
+        
+       
+        errorMessages["error"] = "Too many parameters";
+        
+        
+        return errorMessages;
     }
 }
