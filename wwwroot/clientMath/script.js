@@ -1,6 +1,5 @@
 async function TestMaths(url, param, showresult) {
     try {
-        console.log("test")
         const val = await showresult(url + param);
         const response = await fetch(url + param);
         const data = await response.json();
@@ -9,15 +8,24 @@ async function TestMaths(url, param, showresult) {
 
         if (val === null) {
             if (data.error !== null) {
-                check = "OK"; } else {
+                check = "OK"; } 
+            else {
                 check = "ERROR"; }
         } else {
             if (val.result === data.result) {
                 check = "OK";}
-                 else {
+            else {
                 check = "ERROR";}
         }
-        return `${check} ---> ${JSON.stringify(data)}\n`;
+        let info
+        try{
+            info=JSON.stringify(data)
+        }
+        catch{
+            check="error"
+            info="could not find result"
+        }
+        return `${check} --->${info}\n`;
         
     } catch (error) {
         console.error('Erreur lors de la récupération des données:', error);
