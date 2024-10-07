@@ -16,6 +16,10 @@
         <legend>Test</legend> 
         <div id="result"></div>
     </fieldset>
+    <fieldset>
+        <legend>verdict</legend> 
+        <div id="verdict"></div>
+    </fieldset>
     <script type="module">
         import queryStringParser from 'https://cdn.skypack.dev/query-string';
       </script>
@@ -53,20 +57,31 @@
                 document.getElementById("result").innerText +=await TestMaths(url, "n=30&op=np", showResult);
                 document.getElementById("result").innerText +=await TestMaths(url, "X=111&op=+&y=244", showResult);
                 document.getElementById("result").innerText +=await TestMaths(url, "Y=244&op=+&x=111", showResult);
-                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=111&y=244&z=0", showResult);//
-                document.getElementById("result").innerText +=await TestMaths(url, "n=5&op=!&z=0", showResult);//
+                document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=111&y=244&z=0", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "n=5&op=!&z=0", showResult);
                 document.getElementById("result").innerText +=await TestMaths(url, "n=5.5&op=!", showResult);
-                document.getElementById("result").innerText +=await TestMaths(url, "z=0&", showResult);
+                document.getElementById("result").innerText +=await TestMaths(url, "z=0&", showResult);//
                 document.getElementById("result").innerText +=await TestMaths(url, "n=-5&op=!", showResult);
                 document.getElementById("result").innerText +=await TestMaths(url, "x=", showResult);
                 } catch (error) {
                 console.error("Erreur lors du test:", error);
                 document.getElementById("result").innerText = "Erreur lors du test: " + error.message;
             }
+            countErrors()
         }
         function showHelp() {
             window.location.replace("http://localhost:5000/api/Maths?");  
         }
+        function countErrors() {
+        const resultDiv = document.getElementById("result").innerText;
+        const errorCount = (resultDiv.match("ERROR") || []).length; // Matches "ERROR" globally
+        if(errorCount>0){
+        document.getElementById("verdict").innerText = "Number of 'ERROR' occurrences: " + errorCount;}
+        else{
+            document.getElementById("verdict").innerText ="bravo aucun probleme"   
+        }
+        }
+
     </script>
 </body>
 </html>

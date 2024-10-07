@@ -57,26 +57,9 @@ function showResult(url){
 };
 
 
-// function parseQueryString(url) {
-//     const queryString = url.split('?')[1];
-//     console.log(queryString)
-//     const params = {};
-
-//     if (queryString) {
-//         const pairs = queryString.split('&');
-//         for (const pair of pairs) {
-//             const [key, value] = pair.split('=');
-//             params[decodeURIComponent(key)] = value ? decodeURIComponent(value) : null;
-//         }
-//     }
-//     console.log(params)
-//     return params;
-// }
-
 
 function parseQueryString(url) {
     const queryString = url.split('?')[1];
-    console.log(queryString)
     const params = {};
 
     if (queryString) {
@@ -91,14 +74,12 @@ function parseQueryString(url) {
             }
         }
     }
-    console.log(params)
     return params;
 }
 
 
 function decomposePath(queryString){
     let params = null;
-    console.log(queryString)
     if (queryString !== undefined) {
         params = parseQueryString(queryString);
     }
