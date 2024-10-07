@@ -13,9 +13,9 @@ function showResult(url){
 
     if (extraParams.length > 0) {
    
-      const Result = MathFunctions.createErrorAllResult(path.params);
-      this.HttpContext.response.JSON(Result);
-      return;
+       Result = MathFunctions.createErrorAllResult(path.params);
+    
+      return Result;
     }
    
     if (Object.keys(path.params).length === 0) {
