@@ -98,17 +98,17 @@ export class MathFunctions {
     }
 
     static handleDivision(op, x, y) {
-        // Cas de la division par zéro
+       
         if (y === 0) {
             if (x === 0) {
-                // 0 / 0 => NaN
+                
                 return this.createSuccessResult(op, x, y,"NaN");
             }
-            // Division par zéro : renvoie Infinity ou -Infinity en fonction du signe de x
+           
             return this.createSuccessResult(op, x, y, x > 0 ? "Infinity" : "-Infinity");
         }
     
-        // Cas normal de division
+        
         const result = Division(x, y);
         return this.createSuccessResult(op, x, y, result);
     }
@@ -125,16 +125,16 @@ export class MathFunctions {
         return isNaN(x) || isNaN(y);
     }
 
-    // Ajout de la gestion de 'n' dans les résultats de succès
+    
     static createSuccessResult(op, x, y, result, n = null) {
-          // Si 'bool' est true, on renvoie une erreur associée à 'n'
+         
   
         return n !== null
             ? { op: op, n: n, result: result }
             : { op: op, x: x, y: y, result: result};
     }
 
-    // Ajout de la gestion de 'n' dans les résultats d'erreur
+    
     static createErrorResult(op, x, y, n = null, error,bool =false) {
         if (bool ) {
             return { op: op, n: n,error: "Parrameter n is missing" };
@@ -146,13 +146,13 @@ export class MathFunctions {
     static createErrorAllResult(params) {
         let errorMessages = {};
         
-       // Parcourir chaque clé et valeur de l'objet
+       
     Object.entries(params).forEach(([key, value]) => {
-        // Ajouter un message d'erreur pour chaque clé
+       
         errorMessages[key] = value;
     });
         
-        // Ajouter le message d'erreur général
+       
         errorMessages["error"] = "Too many parameters";
         
         
