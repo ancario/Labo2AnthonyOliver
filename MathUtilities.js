@@ -85,7 +85,7 @@ export class MathFunctions {
             case '/':
                 return this.handleDivision(op, x, y);
             case '%':
-                return this.createSuccessResult(op, x, y, Modulo(x, y));
+                return this.handleModulo(op,x,y);
             case '!':
                 return this.createSuccessResult(op, null, null, Factorielle(parseInt(x)), parseInt(x));
             case 'p':
@@ -112,7 +112,15 @@ export class MathFunctions {
         const result = Division(x, y);
         return this.createSuccessResult(op, x, y, result);
     }
+    static handleModulo(op, x, y) {
 
+        if (y === 0) {
+            return this.createSuccessResult(op, x, y,"NaN");
+        }
+        const result = Modulo(x, y);
+
+        return this.createSuccessResult(op, x, y, result);
+}
     static areParametersInvalid(op, x, y) {
         return isNaN(x) || isNaN(y);
     }
