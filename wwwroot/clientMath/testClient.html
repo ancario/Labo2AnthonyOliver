@@ -39,7 +39,7 @@
                 //document.getElementById("result").innerText +=await TestMaths(url, "op=%&x=5&y=5", showResult);
                 //document.getElementById("result").innerText +=await TestMaths(url, "op=%&x=100&y=13", showResult);
 
-                
+
                 document.getElementById("result").innerText +=await TestMaths(url, "op=%&x=100&y=0", showResult);//
                 document.getElementById("result").innerText +=await TestMaths(url, "op=%&x=0&y=0", showResult);//
 
@@ -56,17 +56,16 @@
                 // document.getElementById("result").innerText +=await TestMaths(url, "n=114&op=p", showResult);
                 // document.getElementById("result").innerText +=await TestMaths(url, "n=1&op=np", showResult);
                 // document.getElementById("result").innerText +=await TestMaths(url, "n=30&op=np", showResult);
+                //document.getElementById("result").innerText +=await TestMaths(url, "X=111&op=+&y=244", showResult);
+                //document.getElementById("result").innerText +=await TestMaths(url, "Y=244&op=+&x=111", showResult);
 
 
-
-                // document.getElementById("result").innerText +=await TestMaths(url, "x=111&op=+&y=244", showResult);//
-                // document.getElementById("result").innerText +=await TestMaths(url, "y=244&op=+&x=111", showResult);//
                 // document.getElementById("result").innerText +=await TestMaths(url, "op=+&x=111&y=244&z=0", showResult);//
                 // document.getElementById("result").innerText +=await TestMaths(url, "n=5&op=!&z=0", showResult);//
                 // document.getElementById("result").innerText +=await TestMaths(url, "n=5.5&op=!", showResult);
-                // //document.getElementById("result").innerText +=await TestMaths(url, "z=0&", showResult);
+                //document.getElementById("result").innerText +=await TestMaths(url, "z=0&", showResult);
                 // document.getElementById("result").innerText +=await TestMaths(url, "n=-5&op=!", showResult);
-                // //document.getElementById("result").innerText +=await TestMaths(url, "x=", showResult);
+                //document.getElementById("result").innerText +=await TestMaths(url, "x=", showResult);
                 } catch (error) {
                 console.error("Erreur lors du test:", error);
                 document.getElementById("result").innerText = "Erreur lors du test: " + error.message;
