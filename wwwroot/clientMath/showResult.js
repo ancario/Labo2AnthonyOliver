@@ -39,16 +39,16 @@ function showResult(url){
         }
     } else if (op && x && y) {
         if (isNaN(x)) {
-            Result = MathFunctions.createErrorResult(op, x, y, null, "X is not a number");
+            Result = MathFunctions.createErrorResult(op, x, y, null, "x is not a number");
         } else if (isNaN(y)) {
-            Result = MathFunctions.createErrorResult(op, x, y, null, "Y is not a number");
+            Result = MathFunctions.createErrorResult(op, x, y, null, "y is not a number");
         } else {
             Result = MathFunctions.calculate(op, parseFloat(x), parseFloat(y));
         }
     } else if (!x) {
-        Result = MathFunctions.createErrorResult(op, null, y, null, "X is missing");
+        Result = MathFunctions.createErrorResult(op, null, y, null, "x is missing");
     } else if (!y) {
-        Result = MathFunctions.createErrorResult(op, x, null, null, "Y is missing");
+        Result = MathFunctions.createErrorResult(op, x, null, null, "y is missing");
     } else {
         Result = MathFunctions.createErrorResult(op, x, y, null, "Paramètres 'x' ou 'y' manquants ou non valides");
     }
