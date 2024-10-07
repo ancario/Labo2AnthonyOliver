@@ -23,7 +23,7 @@ export default class MathsController extends Controller {
       this.HttpContext.response.JSON(Result);
       return;
     }
-    // Si l'un des paramètres requis est manquant, affiche la liste des requêtes possibles
+    
     if (Object.keys(this.HttpContext.path.params).length === 0) {
       // Si aucun paramètre n'est présent, retourner la liste des query strings
       this.HttpContext.response.HTML(generateQueryStringList());
