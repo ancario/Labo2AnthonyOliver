@@ -18,6 +18,7 @@ export function Division(x, y) {
 }
 
 export function Modulo(x, y) {
+    print("modulo")
     return x % y;
 }
 

@@ -1,7 +1,7 @@
 async function TestMaths(url, param, showresult) {
     try {
+        console.log("test")
         const val = await showresult(url + param);
-
         const response = await fetch(url + param);
         const data = await response.json();
 

@@ -82,6 +82,7 @@ class MathFunctions {
             case '/':
                 return this.handleDivision(op, x, y);
             case '%':
+                console.log("modulo")
                 return this.createSuccessResult(op, x, y, Modulo(x, y));
             case '!':
                 return this.createSuccessResult(op, null, null, Factorielle(parseInt(x)), parseInt(x));
